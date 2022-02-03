@@ -9,7 +9,9 @@ USWN.ButtonRedir =
 	Up = "Down",
 	Down = "Down",
 	Left = "Down",
-	Right = "Down"
+	Right = "Down",
+	UpLeft = "Down",
+	UpRight = "Down"
 }
 
 -- Defined the parts to be rotated at which degree
@@ -67,23 +69,15 @@ USWN.Blank =
 function USWN.Load()
 	local sButton = Var "Button"
 	local sElement = Var "Element"
-	local sPlayer = Var "Player" or PLAYER_1
-
-	local Reverse = string.find(GAMESTATE:GetPlayerState(sPlayer):GetPlayerOptionsString("ModsLevel_Preferred"):lower(), "reverse")
-
 	
-	local Button = USWN.ButtonRedir[sButton] or sButton	
-	local Element = USWN.ElementRedir[sElement] or sElement
-
-	if (string.find(Element, "Active") or 
-	   string.find(Element, "Inactive")) then
-		Button = sButton
-		if Reverse and sButton == "Up" then Button = "Down" end
-		if Reverse and sButton == "Down" then Button = "Up" end
-
+	local Button = sButton
+	if (string.find(sElement, "Bottomcap") or string.find(sElement,"Body")) then
+	else
+		Button = USWN.ButtonRedir[sButton] or sButton
 	end
-	
-	Element = string.gsub(Element, "Simple", "")
+				
+	--Setting global element
+	local Element = USWN.ElementRedir[sElement] or sElement
 	
 	local Actor = loadfile(NOTESKIN:GetPath(Button,Element))
 	
