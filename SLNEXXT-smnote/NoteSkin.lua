@@ -10,6 +10,8 @@ USWN.ButtonRedir =
 	Down = "Down",
 	Left = "Down",
 	Right = "Down"
+	UpLeft = "Down",
+	UpRight = "Down"
 }
 
 -- Defined the parts to be rotated at which degree
@@ -74,6 +76,11 @@ function USWN.Load()
 
 	local Button = USWN.ButtonRedir[sButton] or sButton	
 	local Element = USWN.ElementRedir[sElement] or sElement
+
+	if (string.find(sElement, "Bottomcap") or string.find(sElement,"Body")) then
+	else
+		Button = USWN.ButtonRedir[sButton] or sButton
+	end
 
 	if string.find(sElement, "Head") then
 		Element = "Tap Note"
