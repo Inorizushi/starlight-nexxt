@@ -19,6 +19,7 @@ return Def.ActorFrame{
 				:effectclock("beat")
 				:texcoordvelocity(0,-0.2)
 				:MaskDest()
+				:blend(Blend.Multiply)
 		end
 	},
 	Def.Sprite {
