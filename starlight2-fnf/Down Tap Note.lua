@@ -1,15 +1,12 @@
 local Colour = Var "Color"
 
+local Button = Var "Button"
+
 local Colours = {
-	["4th"]	= "4th",
-	["8th"] = "8th",
-	["12th"] = "12th",
-	["16th"] = "16th",
-	["24th"] = "12th",
-	["32nd"] = "32nd",
-	["48th"] = "12th",
-	["64th"] = "64th",
-	["192nd"] = "192nd"
+	["Left"]	= "#7028c5",
+	["Down"] = "#00bfba",
+	["Up"] = "#56d207",
+	["Right"] = "#c20002",
 }
 
 return Def.ActorFrame{
@@ -23,16 +20,12 @@ return Def.ActorFrame{
 			self:MaskSource(true) 
 		end
 	},
-	Def.Sprite {
-		Texture=NOTESKIN:GetPath( '_Down', 'Scroll '..Colours[Colour] ),
+	Def.Quad{
 		InitCommand=function(self) 
-			self:y(32)
-				:set_use_effect_clock_for_texcoords(true)
-				:effectclock("beat")
-				:texcoordvelocity(0,-0.2)
+			self:setsize(64,64)
+				:diffuse(color(Colours[Button]))
 				:MaskDest()
 				:blend(Blend.Multiply)
-				:diffuse(color("0.65,0.65,0.65,0.5"))
 		end
 	},
 	Def.Sprite {
@@ -45,12 +38,6 @@ return Def.ActorFrame{
 				:blend(Blend.Add):diffusealpha(0.25)
 
 		end
-	},
-	Def.Sprite {
-		Texture=NOTESKIN:GetPath( '_Down', 'Note Outline'),
-	},
-	Def.Sprite {
-		Texture=NOTESKIN:GetPath( '_Down', 'Note Stroke'),
 	},
 	Def.Quad {
 		InitCommand=function(self)
