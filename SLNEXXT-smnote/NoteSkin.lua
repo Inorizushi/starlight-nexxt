@@ -9,7 +9,7 @@ USWN.ButtonRedir =
 	Up = "Down",
 	Down = "Down",
 	Left = "Down",
-	Right = "Down"
+	Right = "Down",
 	UpLeft = "Down",
 	UpRight = "Down"
 }
