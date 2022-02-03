@@ -30,8 +30,6 @@ USWN.ElementRedir =
 {
 	["Tap Fake"] = "Tap Note",
 	["Roll Explosion"] = "Hold Explosion",
-	["Hold Head Active"] = "Hold Head",
-	["Hold Head Inactive"] = "Hold Head",
 }
 
 USWN.PartsToRotate =
@@ -75,13 +73,13 @@ function USWN.Load()
 	else
 		Button = USWN.ButtonRedir[sButton] or sButton
 	end
+				
+	--Setting global element
+	local Element = USWN.ElementRedir[sElement] or sElement
 
 	if string.find(sElement, "Head") then
 		Element = "Tap Note"
 	end
-				
-	--Setting global element
-	local Element = USWN.ElementRedir[sElement] or sElement
 	
 	local Actor = loadfile(NOTESKIN:GetPath(Button,Element))
 	
