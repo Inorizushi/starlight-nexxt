@@ -30,12 +30,8 @@ USWN.ElementRedir =
 {
 	["Tap Fake"] = "Tap Note",
 	["Roll Explosion"] = "Hold Explosion",
-}
-
-USWN.PartsToZoom = 
-{
-	["Tap Note"] = true,
-	["Hold Head"] = true,
+	["Hold Head Active"] = "Hold Head",
+	["Hold Head Inactive"] = "Hold Head",
 }
 
 USWN.PartsToRotate =
@@ -73,10 +69,8 @@ USWN.Blank =
 function USWN.Load()
 	local sButton = Var "Button"
 	local sElement = Var "Element"
-
-	local Button = USWN.ButtonRedir[sButton] or sButton	
-	local Element = USWN.ElementRedir[sElement] or sElement
-
+	
+	local Button = sButton
 	if (string.find(sElement, "Bottomcap") or string.find(sElement,"Body")) then
 	else
 		Button = USWN.ButtonRedir[sButton] or sButton
@@ -85,6 +79,9 @@ function USWN.Load()
 	if string.find(sElement, "Head") then
 		Element = "Tap Note"
 	end
+				
+	--Setting global element
+	local Element = USWN.ElementRedir[sElement] or sElement
 	
 	local Actor = loadfile(NOTESKIN:GetPath(Button,Element))
 	
