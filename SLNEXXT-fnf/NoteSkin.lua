@@ -65,12 +65,23 @@ USWN.Blank =
 function USWN.Load()
 	local sButton = Var "Button"
 	local sElement = Var "Element"
+	local sPlayer = Var "Player"
+	local Reverse = string.find(GAMESTATE:GetPlayerState(sPlayer):GetPlayerOptionsString("ModsLevel_Preferred"):lower(), "reverse")
+	
 
 	local Button = USWN.ButtonRedir[sButton] or sButton	
 	local Element = USWN.ElementRedir[sElement] or sElement
 
 	if string.find(sElement, "Head") then
 		Element = "Tap Note"
+	end
+
+	if (string.find(Element, "Active") or 
+	   string.find(Element, "Inactive")) then
+		Button = sButton
+		if Reverse and sButton == "Up" then Button = "Down" end
+		if Reverse and sButton == "Down" then Button = "Up" end
+
 	end
 
 	if string.find(sElement, "Hold Body") or string.find(sElement, "Hold Bottomcap") then

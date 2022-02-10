@@ -32,6 +32,8 @@ USWN.ElementRedir =
 	["Roll Explosion"] = "Hold Explosion",
 	["Hold Head Active"] = "Hold Head",
 	["Hold Head Inactive"] = "Hold Head",
+	["Roll Head Active"] = "Roll Head",
+	["Roll Head Inactive"] = "Roll Head",
 }
 
 USWN.PartsToRotate =
@@ -69,15 +71,24 @@ USWN.Blank =
 function USWN.Load()
 	local sButton = Var "Button"
 	local sElement = Var "Element"
+	local sPlayer = Var "Player"
+	local Reverse = string.find(GAMESTATE:GetPlayerState(sPlayer):GetPlayerOptionsString("ModsLevel_Preferred"):lower(), "reverse")
 	
+	--Setting global element
+	local Element = USWN.ElementRedir[sElement] or sElement
 	local Button = sButton
 	if (string.find(sElement, "Bottomcap") or string.find(sElement,"Body")) then
 	else
 		Button = USWN.ButtonRedir[sButton] or sButton
 	end
-				
-	--Setting global element
-	local Element = USWN.ElementRedir[sElement] or sElement
+
+	if (string.find(Element, "Active") or 
+	   string.find(Element, "Inactive")) then
+		Button = sButton
+		if Reverse and sButton == "Up" then Button = "Down" end
+		if Reverse and sButton == "Down" then Button = "Up" end
+
+	end
 	
 	local Actor = loadfile(NOTESKIN:GetPath(Button,Element))
 	
