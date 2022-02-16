@@ -45,7 +45,7 @@ return Def.ActorFrame{
 		InitCommand=function(self)
 			self:set_use_effect_clock_for_texcoords(true)
 				:effectclock("beat")
-				:SetAllStateDelays(1)
+				:SetAllStateDelays(0.25)
 		end
 	},
 	Def.Quad {
