@@ -66,7 +66,11 @@ function USWN.Load()
 	local sButton = Var "Button"
 	local sElement = Var "Element"
 	local sPlayer = Var "Player"
-	local Reverse = string.find(GAMESTATE:GetPlayerState(sPlayer):GetPlayerOptionsString("ModsLevel_Preferred"):lower(), "reverse")
+	local Player = sPlayer
+	if sPlayer ~= "" then
+		Player = GAMESTATE:GetMasterPlayerNumber()
+	end
+	local Reverse = string.find(GAMESTATE:GetPlayerState(Player):GetPlayerOptionsString("ModsLevel_Preferred"):lower(), "reverse")
 	
 
 	local Button = USWN.ButtonRedir[sButton] or sButton	
