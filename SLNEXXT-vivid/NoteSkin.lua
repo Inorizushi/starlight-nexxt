@@ -73,7 +73,7 @@ function USWN.Load()
 	local sElement = Var "Element"
 	local sPlayer = Var "Player"
 	local Player = sPlayer
-	if sPlayer ~= "" then
+	if sPlayer == "" then
 		Player = GAMESTATE:GetMasterPlayerNumber()
 	end
 	local Reverse = string.find(GAMESTATE:GetPlayerState(Player):GetPlayerOptionsString("ModsLevel_Preferred"):lower(), "reverse")
